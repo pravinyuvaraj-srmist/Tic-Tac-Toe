@@ -1,29 +1,23 @@
 public class TicTacToe {
 
-    static char[][] board = {
-            {'-', '-', '-'},
-            {'-', '-', '-'},
-            {'-', '-', '-'}
-    };
+    static char[][] board = new char[3][3];
 
-    // Entry point
+    /**
+     * Entry point of the program.
+     * Places a sample move and prints the updated cell value.
+     */
     public static void main(String[] args) {
-        System.out.println(isValidMove(1, 1)); // test case
+        placeMove(0, 0, 'X');
+        System.out.println(board[0][0]);
     }
 
-    // Validate move
-    static boolean isValidMove(int row, int col) {
-
-        // Check boundaries
-        if (row < 0 || row >= 3 || col < 0 || col >= 3) {
-            return false;
-        }
-
-        // Check if cell is empty
-        if (board[row][col] != '-') {
-            return false;
-        }
-
-        return true;
+    /**
+     * Updates the board by placing the given symbol at
+     * the specified row and column.
+     * Input: Row, Column, Symbol
+     * Hint: Assume the move is already validated.
+     */
+    static void placeMove(int row, int col, char symbol) {
+        board[row][col] = symbol;
     }
 }
