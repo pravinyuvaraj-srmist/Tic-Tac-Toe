@@ -1,23 +1,50 @@
+import java.util.Random;
+
 public class TicTacToe {
 
-    static char[][] board = new char[3][3];
+    static char[][] board = {
+        {'-', '-', '-'},
+        {'-', '-', '-'},
+        {'-', '-', '-'}
+    };
+
+    static char computerSymbol = 'O';
 
     /**
-     * Entry point of the program.
-     * Places a sample move and prints the updated cell value.
+     * Entry point of the program. Triggers the computer move.
      */
     public static void main(String[] args) {
-        placeMove(0, 0, 'X');
-        System.out.println(board[0][0]);
+        computerMove();
+        printBoard();
     }
 
     /**
-     * Updates the board by placing the given symbol at
-     * the specified row and column.
-     * Input: Row, Column, Symbol
-     * Hint: Assume the move is already validated.
+     * Generates random slot values until a valid move is found,
+     * then places the computer symbol on the board.
      */
-    static void placeMove(int row, int col, char symbol) {
-        board[row][col] = symbol;
+    static void computerMove() {
+        Random rand = new Random();
+        int row, col;
+
+        while (true) {
+            row = rand.nextInt(3); // 0 to 2
+            col = rand.nextInt(3); // 0 to 2
+
+            // Check if the selected cell is empty
+            if (board[row][col] == '-') {
+                board[row][col] = computerSymbol;
+                break;
+            }
+        }
+    }
+
+    // Helper method to display the board
+    static void printBoard() {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                System.out.print(board[i][j] + " ");
+            }
+            System.out.println();
+        }
     }
 }
